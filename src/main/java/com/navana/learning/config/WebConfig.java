@@ -1,21 +1,10 @@
 
-package com.navana.learning;
+package com.navana.learning.config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
-public class NavanaLearningApplication {
-
-    public static void main(String[] args) {
-
-        SpringApplication.run(
-            NavanaLearningApplication.class, args
-        );
-
-        System.out.println(
-            "Navana Learning Skills Started Successfully!"
-        );
-    }
+@Configuration
+public class WebConfig {
+    // Add custom web configuration here when needed.
 }
 

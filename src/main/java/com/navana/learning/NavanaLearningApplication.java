@@ -8,14 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NavanaLearningApplication {
 
     public static void main(String[] args) {
-
-        SpringApplication.run(
-            NavanaLearningApplication.class, args
-        );
-
-        System.out.println(
-            "Navana Learning Skills Started Successfully!"
-        );
+        SpringApplication.run(NavanaLearningApplication.class, args);
     }
 }
 
