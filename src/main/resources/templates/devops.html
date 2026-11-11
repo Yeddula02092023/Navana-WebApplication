@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DevOps Learning</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header><h1>DevOps Learning Roadmap</h1></header>
+<main class="container">
+    <a th:href="@{/}">← Back Home</a>
+    <h2>AWS DevOps</h2>
+    <ul id="awsTopics"></ul>
+    <h2>Azure DevOps</h2>
+    <ul id="azureTopics"></ul>
+</main>
+<script th:src="@{/js/script.js}"></script>
+<script>
+async function loadTopics(url, elementId) {
+    const response = await fetch(url);
+    const topics = await response.json();
+    const list = document.getElementById(elementId);
+
+    topics.forEach(topic => {
+        const li = document.createElement("li");
+        li.textContent = topic.topicName + " - " + topic.description;
+        list.appendChild(li);
+    });
+}
+
+loadTopics("/api/devops/aws", "awsTopics");
+loadTopics("/api/devops/azure", "azureTopics");
+</script>
+</body>
+</html>
+

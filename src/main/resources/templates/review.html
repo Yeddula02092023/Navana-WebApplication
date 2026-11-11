@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Navana Learning Review</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header><h1>Thank You for Visiting!</h1></header>
+
+<main class="container">
+    <h2>Rate Navana Learning Skills</h2>
+
+    <form id="reviewForm">
+        <label>Rating (1 to 5 stars)</label>
+        <select id="rating" required>
+            <option value="">Select Rating</option>
+            <option value="1">⭐ 1</option>
+            <option value="2">⭐⭐ 2</option>
+            <option value="3">⭐⭐⭐ 3</option>
+            <option value="4">⭐⭐⭐⭐ 4</option>
+            <option value="5">⭐⭐⭐⭐⭐ 5</option>
+        </select>
+
+        <label>Your Feedback</label>
+        <textarea id="feedback" required maxlength="1000"></textarea>
+
+        <button type="submit">Submit Review</button>
+    </form>
+
+    <p id="result"></p>
+    <a th:href="@{/}">Back to Home</a>
+</main>
+
+<script>
+document.getElementById("reviewForm").addEventListener(
+    "submit", async function(event) {
+
+    event.preventDefault();
+
+    const review = {
+        rating: Number(document.getElementById("rating").value),
+        feedback: document.getElementById("feedback").value
+    };
+
+    const response = await fetch("/api/reviews", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(review)
+    });
+
+    document.getElementById("result").textContent =
+        response.ok
+        ? "Thank you for your valuable review!"
+        : "Unable to submit your review. Please try again.";
+});
+</script>
+</body>
+</html>
+

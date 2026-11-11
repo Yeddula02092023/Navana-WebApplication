@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>IT Support Learning</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header><h1>IT Support Learning Roadmap</h1></header>
+<main class="container">
+    <a th:href="@{/}">← Back Home</a>
+    <h2>Complete IT Support Topics</h2>
+    <ul id="supportTopics"></ul>
+</main>
+<script>
+fetch("/api/itsupport/topics")
+.then(response => response.json())
+.then(topics => {
+    const list = document.getElementById("supportTopics");
+    topics.forEach(topic => {
+        const li = document.createElement("li");
+        li.textContent = topic.topicName;
+        list.appendChild(li);
+    });
+});
+</script>
+</body>
+</html>
+

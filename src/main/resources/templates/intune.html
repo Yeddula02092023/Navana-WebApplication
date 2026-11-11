@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Microsoft Intune Learning</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header><h1>Microsoft Intune Learning Roadmap</h1></header>
+<main class="container">
+    <a th:href="@{/}">← Back Home</a>
+    <h2>Intune Topics for IT Support and DevOps</h2>
+    <ul id="intuneTopics"></ul>
+</main>
+<script>
+fetch("/api/intune/topics")
+.then(response => response.json())
+.then(topics => {
+    const list = document.getElementById("intuneTopics");
+    topics.forEach(topic => {
+        const li = document.createElement("li");
+        li.textContent = topic.topicName;
+        list.appendChild(li);
+    });
+});
+</script>
+</body>
+</html>
+
